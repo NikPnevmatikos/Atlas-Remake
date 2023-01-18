@@ -9,17 +9,18 @@ import HomeScreen from './screens/HomeScreen';
 
 function App() {
   return (
-    <div style={{ 
-      backgroundImage: `url(/cool-background.png)`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover"
+    // <div style={{ 
+    //   backgroundImage: `url(/cool-background.png)`,
+    //   backgroundRepeat: "no-repeat",
+    //   backgroundSize: "cover"
 
-      }}>
+    //   }}>
+    <div>
       {/* <div style={{ backgroundImage: `url(/cool-background.svg)` }}>
 
       </div> */}
       <Header/>
-      <main className="py-3 aligh-items-center" >
+      <main >
         <HomeScreen/>
       </main>
       <Footer/>
