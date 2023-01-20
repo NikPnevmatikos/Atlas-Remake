@@ -10,6 +10,7 @@ urlpatterns = [
    path('users/profile/', views.getUserProfile),
    #internships
    path('internships/', views.all_internship),
+   path('provider/internships/', views.provider_internship),
    path('internships/delete/<str:pk>/', views.delete_internship),
    path('internships/create/', views.create_internship),
    path('internships/update/<str:pk>/', views.update_internship),

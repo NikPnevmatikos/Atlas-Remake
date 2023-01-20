@@ -1,45 +1,108 @@
 import React from 'react'
-import { } from 'react-bootstrap'
+import { logout } from '../actions/userActions'
+import {useState} from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import { useNavigate, useLocation } from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import {useDispatch, useSelector} from 'react-redux'
+
 
 // import { atlas_logo } from './atlas_logo.png'
 
 function Header() {
+
+  const dispatch = useDispatch()
+  const userLogin = useSelector(state => state.userLoginReducer)
+  const {userInfo} = userLogin
+
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
+
   return (
-    <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            <img style={{width:"80px", height:"80px"}} src="/atlas_logo.png" alt="" ></img>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarColor03">
-            <ul className="navbar-nav justify-content-end" style={{ width: "100%" }}>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span class="visually-hidden">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/students">Φοιτητές/τριες</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/intership_provider">Φορείς Υποδοχής</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/about">About Άτλα</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/announcement">Ανακοινώσεις</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sign_in">Σύνδεση</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sign_up">Εγγραφή</a>
-              </li>
-            </ul>
+      <Navbar bg='light' expand='lg' variant='light'>
+        <Container fluid>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              <img style={{width:"80px", height:"80px"}} src="/atlas_logo.png" alt="" ></img>
+              </Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle aria-controls='navbarScroll' />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav className="navbar-nav justify-content-end" style={{ width: "100%" }} navbarScroll>
+              {userInfo ? 
+                userInfo.is_student ?
+                  <>
+                    <LinkContainer to='/students'>
+                      <Nav.Link>Αναζήτηση Θέσης</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to='/applications'>
+                      <Nav.Link>Οι Αιτήσεις μου</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to='/about'>
+                      <Nav.Link>About Ατλα</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to='/announcement'>
+                      <Nav.Link>Ανακοινώσεις</Nav.Link>
+                    </LinkContainer>
+                    <NavDropdown align="end" title={userInfo.username} id='username'>
+                      <LinkContainer to='/students/profile'>
+                        <NavDropdown.Item>Το προφίλ μου</NavDropdown.Item>
+                      </LinkContainer> 
+                      <NavDropdown.Divider/>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Αποσύνδεση
+                      </NavDropdown.Item>
+                    </NavDropdown> 
+                  </>
+                  :
+                  <>
+                    <LinkContainer to='/internship_provider'>
+                      <Nav.Link>Οι αγγελίες μου</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to='/about'>
+                      <Nav.Link>About Ατλα</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to='/announcement'>
+                      <Nav.Link>Ανακοινώσεις</Nav.Link>
+                    </LinkContainer>
+                    <NavDropdown align="end" title={userInfo.username} id='username'>
+                      <LinkContainer to='/internship_provider/profile'>
+                        <NavDropdown.Item>Το προφίλ μου</NavDropdown.Item>
+                      </LinkContainer> 
+                      <NavDropdown.Divider/>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Αποσύνδεση
+                      </NavDropdown.Item>
+                    </NavDropdown>     
+                  </>
+                :
+                <>
+                  <LinkContainer to='/students'>
+                    <Nav.Link>Φοιτητές/τριες</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/internship_provider'>
+                    <Nav.Link>Φορείς Υποδοχής</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/about'>
+                    <Nav.Link>About Ατλα</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/announcement'>
+                    <Nav.Link>Ανακοινώσεις</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/sign_up'>
+                    <Nav.Link>Εγγραφή</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/sign_in'>
+                    <Nav.Link>Σύνδεση</Nav.Link>
+                  </LinkContainer>
+                </>
+              }
+              
+            </Nav>
             {/* <button type="button" class="btn btn-info">Ελληνικά</button> */}
             {/* <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -52,10 +115,9 @@ function Header() {
               </div>
             </li> */}
 
-          </div>
-        </div>
-      </nav>
-    </header>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
   )
 }
 

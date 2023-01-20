@@ -48,6 +48,8 @@ def registerStudent(request):
 @api_view(['POST'])
 def registerProvider(request):
     data = request.data
+
+    print(data)
     try:
         user = User.objects.create(
             first_name = data['first_name'],
@@ -62,7 +64,7 @@ def registerProvider(request):
             providerType = data['providerType'],
             category = data['category'],
             afm = data['afm'],
-            #phone = PhoneNumberField(blank = True, null = True)
+            phone = data['phone'],
             workers = data['workers'],
             country = data['country'],
             street = data['street'],
@@ -114,6 +116,7 @@ def updateUserProfile(request):
         user.provider.postal = data['postal']
         user.provider.name = data['name']
         user.provider.identification = data['identification']
+        user.provider.phone = data['phone']
         
         user.provider.save()
     
@@ -165,6 +168,17 @@ def all_internship(request):
     # return Response({'products':serializer.data, 'pages': paginator.num_pages, 'page': page})
     return Response(serializer.data)
 
+@api_view(['GET'])
+def provider_internship(request):
+    
+    user = request.user
+    
+    internship = Internship.objects.filter(user = user)        
+
+    serializer = Internship_Serializer(internship, many=True)
+    
+    return Response(serializer.data)
+
 #returns a sigle internship
 @api_view(['GET'])
 def internship(request, pk):
@@ -172,7 +186,7 @@ def internship(request, pk):
     serializer = Internship_Serializer(internship, many=False)
     return Response(serializer.data)    
 
-#creates a product
+#creates an internship
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_internship(request):
@@ -196,7 +210,7 @@ def create_internship(request):
 
     return Response(serializer.data)
 
-#updates product
+#updates an internship
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_internship(request, pk):

@@ -7,11 +7,11 @@ from django.contrib.auth.models import User
 class Provider(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    # companyName = models.CharField(max_length=30, blank=True)
+    companyName = models.CharField(max_length=30, null=True,blank=True)
     providerType = models.CharField(max_length=30, blank=True)
     category = models.CharField(max_length=30, blank=True)
     afm = models.CharField(max_length=20, null=True, blank=True)
-    #phone = PhoneNumberField(blank = True, null = True)
+    phone = models.CharField(max_length=30, null = True, blank=True)
     workers = models.IntegerField(null=True, blank=True, default=0)
     country = models.CharField(max_length=30, blank=True)
     street = models.CharField(max_length=30, blank=True)
