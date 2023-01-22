@@ -147,7 +147,7 @@ def all_internship(request):
         
     #query the products that contains keyword in either name or category
     #products = Product.objects.filter(name__icontains=query) | Product.objects.filter(category__icontains=query) | Product.objects.filter(brand__icontains=query)
-    internship = Internship.objects.all()        
+    internship = Internship.objects.all().exclude(hidden = True)        
     
     #paginator = Paginator(products,4)   #4 products in each page
     
@@ -288,6 +288,9 @@ def update_apply(request, pk):
         if(data['state'] == 'decline'):
             apply.state = data['state']
             apply.rejectionText = data['rejectionText']
+        else:
+            apply.internship.hidden = True
+            apply.internship.save()
     
     
     apply.state = data['state']
