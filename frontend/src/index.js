@@ -14,7 +14,15 @@ import { userLoginReducer,
          userUpdateReducer,
          userRegisterReducer } from './reducers/userReducer'
 
-import { providerApplicationsReducer } from './reducers/applicationsReducer'
+import { providerApplicationsReducer,
+         applicationsViewReducer,
+         applicationsUpdateReducer,
+         createInternshipReducer,
+         updateInternshipReducer,
+         internshipViewReducer,
+         deleteInternshipReducer,
+         studentApplicationsReducer,
+         studentApplicationsViewReducer } from './reducers/applicationsReducer'
 
 const reducer = combineReducers({
   userLoginReducer,
@@ -22,6 +30,14 @@ const reducer = combineReducers({
   userProfileReducer,
   userUpdateReducer,
   providerApplicationsReducer,
+  applicationsViewReducer,
+  applicationsUpdateReducer,
+  createInternshipReducer,
+  updateInternshipReducer,
+  internshipViewReducer,
+  deleteInternshipReducer,
+  studentApplicationsReducer,
+  studentApplicationsViewReducer,
 
 })
 

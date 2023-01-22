@@ -5,6 +5,10 @@
 
 main {
   min-height: 80vh;
+  height: 100%;
+  width: 100%;
+  background-size: 'cover';
+  background-position: center;
   background-color: rgb(246, 247, 247);
 }
 /* .main {
@@ -13,7 +17,11 @@ main {
 } */
 
 body {
-  background-color: antiquewhite;
+  min-height: 80vh;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(246, 247, 247);
+  background-size: cover;
 }
 
 video {
@@ -24,6 +32,10 @@ video {
   left: 0;
   object-fit: cover;
 }
+/* 
+.footer {
+  top: 0;
+} */
 
 .content {
   position: absolute;
@@ -80,3 +92,32 @@ nav {
 .title {
   justify-items: center;
 }
+
+.react-icons {
+  vertical-align: middle;
+}
+
+.single_list {
+  position: absolute;
+  width: 85%;
+  object-fit: contain;
+}
+
+.accordion {
+  position: absolute;
+  width: 85%;
+  object-fit: contain;
+}
+
+.accordion-header {
+  /* position: absolute; */
+  width: 100%;
+  object-fit: contain;
+}
+
+.accordion-body {
+  /* position: absolute; */
+  width: 100%;
+  object-fit: contain;
+}
+

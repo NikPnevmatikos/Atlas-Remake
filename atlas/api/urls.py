@@ -17,6 +17,7 @@ urlpatterns = [
    path('internships/<str:pk>/', views.internship),
    #apply
    path("apply/view/<str:pk>/", views.applies),
+   path('applies/', views.applies_view),
    path("apply/update/<str:pk>/", views.update_apply),
    path("apply/delete/<str:pk>/", views.delete_apply),
    path("apply/<str:pk>/", views.create_apply)

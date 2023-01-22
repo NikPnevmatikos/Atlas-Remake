@@ -40,7 +40,9 @@ class Internship(models.Model):
     description = models.TextField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=30, blank=True)
+    city = models.CharField(max_length=30, null = True, blank=True)
     price = models.IntegerField(null=True, blank=True, default=0)
+    state = models.CharField(max_length=30, null = True, blank=True)
     hidden = models.BooleanField(null=True, blank=True, default=False)
     
     _id = models.AutoField(primary_key=True, editable=False)   

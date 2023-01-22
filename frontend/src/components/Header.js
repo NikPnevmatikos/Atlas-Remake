@@ -39,7 +39,7 @@ function Header() {
                     <LinkContainer to='/students'>
                       <Nav.Link>Αναζήτηση Θέσης</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/applications'>
+                    <LinkContainer to='/students/applications'>
                       <Nav.Link>Οι Αιτήσεις μου</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to='/about'>

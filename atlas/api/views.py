@@ -204,6 +204,8 @@ def create_internship(request):
         description = data['description'],
         date = data['date'],
         country = data['country'],
+        city = data['city'],
+        state = data['state']
     )   
     
     serializer = Internship_Serializer(internship, many = False)
@@ -227,6 +229,8 @@ def update_internship(request, pk):
     internship.date = data['date'] 
     internship.description = data['description']
     internship.country = data['country']
+    internship.city = data['city']
+    internship.state = data['state']
     
     internship.save()
 
@@ -300,12 +304,23 @@ def update_apply(request, pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def applies(request, pk):
-    apply = Apply.objects.filter(internship=pk)
+    apply = Apply.objects.filter(internship=pk).exclude(state='temporary')
     
     serializer = Apply_Serializer(apply, many = True)
     
     return Response(serializer.data) 
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def applies_view(request):
+    user = request.user
+    apply = Apply.objects.filter(user=user)
+    
+    serializer = Apply_Serializer(apply, many = True)
+    
+    return Response(serializer.data) 
+    
 #delete an application
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])

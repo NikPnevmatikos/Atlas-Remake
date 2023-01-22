@@ -101,6 +101,9 @@ class Internship_Serializer(serializers.ModelSerializer):
 
 
 class Apply_Serializer(serializers.ModelSerializer):
+    university = serializers.CharField(source = 'user.student.university')
+    first_name = serializers.CharField(source = 'user.first_name')
+    last_name = serializers.CharField(source = 'user.last_name')
     class Meta:
         model = Apply
         fields = '__all__'
