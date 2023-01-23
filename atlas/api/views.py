@@ -156,7 +156,7 @@ def all_internship(request):
                             lenght__icontains = lenght,
                             type__icontains = typeS,
                             city__icontains = loc
-                        )
+                        ).exclude(hidden = True).exclude(state = 'temporary')
     
     serializer = Internship_Serializer(internship, many=True)
     
