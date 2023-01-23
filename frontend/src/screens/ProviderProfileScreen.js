@@ -78,7 +78,7 @@ function ProviderProfileScreen() {
         <div>
             <div 
             style={{ display: 'block', 
-                    width: 700, padding: 15 }}
+                    width: 700, padding: 15, height: '7vh' }}
             >
                 <Breadcrumb>
                 <LinkContainer to = '/'>

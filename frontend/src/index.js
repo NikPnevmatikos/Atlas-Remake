@@ -22,7 +22,9 @@ import { providerApplicationsReducer,
          internshipViewReducer,
          deleteInternshipReducer,
          studentApplicationsReducer,
-         studentApplicationsViewReducer } from './reducers/applicationsReducer'
+         studentApplicationsViewReducer,
+         deleteApplyReducer ,
+         createApplyReducer} from './reducers/applicationsReducer'
 
 const reducer = combineReducers({
   userLoginReducer,
@@ -38,6 +40,8 @@ const reducer = combineReducers({
   deleteInternshipReducer,
   studentApplicationsReducer,
   studentApplicationsViewReducer,
+  deleteApplyReducer,
+  createApplyReducer,
 
 })
 

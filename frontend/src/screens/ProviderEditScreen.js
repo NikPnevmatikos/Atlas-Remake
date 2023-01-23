@@ -108,7 +108,7 @@ function ProviderEditScreen() {
         <div>
             <div 
             style={{ display: 'block', 
-                    width: 700, padding: 15 }}
+                    width: 700, padding: 15, height: '7vh' }}
             >
                 <Breadcrumb>
                 <LinkContainer to = '/'>
@@ -123,7 +123,7 @@ function ProviderEditScreen() {
                 </LinkContainer>
                 <LinkContainer to = '/internship_provider/profile'>
                     <Breadcrumb.Item>
-                    Το προφίλ μου
+                    Το Προφίλ Μου
                     </Breadcrumb.Item>
                 </LinkContainer>
                 <Breadcrumb.Item active>
@@ -159,7 +159,6 @@ function ProviderEditScreen() {
                         }
                         
                         <Form onSubmit={submitHandler}>
-                            <h5 className='py-2'>Στοιχεία Λογαριασμού:</h5>
                             <Form.Group controlId='username' className='py-1'>
                                 <Form.Label>Όνομα Χρήστη:</Form.Label>
                                 <Form.Control 

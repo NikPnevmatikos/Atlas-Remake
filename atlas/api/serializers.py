@@ -95,12 +95,24 @@ class UserSerializerWithToken(User_Serializer):
     
 
 class Internship_Serializer(serializers.ModelSerializer):
+    companyName = serializers.CharField(source = 'user.provider.name')
+    phone = serializers.CharField(source = 'user.provider.phone')
+    email = serializers.CharField(source = 'user.email')
     class Meta:
         model = Internship
         fields = '__all__'
 
 
+
 class Apply_Serializer(serializers.ModelSerializer):
+    name = serializers.CharField(source = 'internship.name')
+    country = serializers.CharField(source = 'internship.country')
+    city = serializers.CharField(source = 'internship.city')
+    lenght = serializers.CharField(source = 'internship.lenght')
+    type = serializers.CharField(source = 'internship.type')
+    companyName = serializers.CharField(source = 'internship.user.provider.name')
+    phone = serializers.CharField(source = 'internship.user.provider.phone')
+    email = serializers.CharField(source = 'internship.user.email')
     university = serializers.CharField(source = 'user.student.university')
     first_name = serializers.CharField(source = 'user.first_name')
     last_name = serializers.CharField(source = 'user.last_name')

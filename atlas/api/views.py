@@ -108,8 +108,6 @@ def updateUserProfile(request):
         user.provider.providerType = data['providerType']
         user.provider.category = data['category']
         user.provider.afm = data['afm']
-        #phone = PhoneNumberField(blank = True, null = True)
-        #user.provider.workers = data['workers'],
         user.provider.country = data['country']
         user.provider.workers = data['workers']
         user.provider.street = data['street']
@@ -138,34 +136,30 @@ def getUserProfile(request):
 # /////////////////////////////////////////  I N T E R N S H I P S   ////////////////////////////////////////////////////
 @api_view(['GET'])
 def all_internship(request):
+
+    uni = request.query_params.get('uni')         #keyword is for the search option 
+    if uni == None:
+        uni=''
+    lenght = request.query_params.get('len')         #keyword is for the search option 
+    if lenght == None:
+        lenght=''
+    typeS = request.query_params.get('typeS')         #keyword is for the search option 
+    if typeS == None:
+        typeS=''
+    loc = request.query_params.get('loc')         #keyword is for the search option 
+    if loc == None:
+        loc=''
     
-    # query = request.query_params.get('keyword')         #keyword is for the search option 
-    # page = request.query_params.get('page')             #products are divided in pages
-    
-    # if query == None:
-    #     query=''
-        
-    #query the products that contains keyword in either name or category
-    #products = Product.objects.filter(name__icontains=query) | Product.objects.filter(category__icontains=query) | Product.objects.filter(brand__icontains=query)
-    internship = Internship.objects.all().exclude(hidden = True)        
-    
-    #paginator = Paginator(products,4)   #4 products in each page
-    
-    # try:
-    #     products = paginator.page(page)
-    # except PageNotAnInteger:
-    #     products = paginator.page(1)
-    # except EmptyPage:
-    #     products = paginator.page(paginator.num_pages)
-        
-    # if page==None:
-    #     page=1
-        
-    # page = int(page)
+    #query the internships that contains keyword  
+    internship = Internship.objects.filter(
+                            university__icontains = uni, 
+                            lenght__icontains = lenght,
+                            type__icontains = typeS,
+                            city__icontains = loc
+                        )
     
     serializer = Internship_Serializer(internship, many=True)
     
-    # return Response({'products':serializer.data, 'pages': paginator.num_pages, 'page': page})
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -274,18 +268,30 @@ def create_apply(request, pk):
 
     return Response(serializer.data) 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def apply_exist(request, pk):
+    user = request.user
+    internship = Internship.objects.get(_id = pk)
+
+    if Apply.objects.filter(user = user, internship = internship).exists():
+        return Response('true')
+    
+    return Response('false')
+
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_apply(request, pk):
     apply = Apply.objects.get(_id = pk)
     data = request.data
     
+    print(data)
     if(apply.state == 'temporary'):
         apply.text = data['text']
         if (data['flag'] == 'true'):
             apply.cv = request.FILES.get('file')
     else:  
-        if(data['state'] == 'decline'):
+        if(data['state'] == 'declined'):
             apply.state = data['state']
             apply.rejectionText = data['rejectionText']
         else:

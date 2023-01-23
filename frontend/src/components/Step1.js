@@ -5,6 +5,7 @@ function Step1({ formData, setFormData }) {
     <div className="sign-up-container">
       <input
         type="text"
+        required
         placeholder="Όνομα Χρήστη"
         value={formData.username}
         onChange={(event) =>
@@ -13,6 +14,7 @@ function Step1({ formData, setFormData }) {
       />
       <input
         type="text"
+        required
         placeholder="Email"
         value={formData.email}
         onChange={(event) =>
@@ -20,6 +22,7 @@ function Step1({ formData, setFormData }) {
         }
       />
       <input
+        required
         type="password"
         placeholder="Κωδικός"
         value={formData.password}
@@ -28,6 +31,7 @@ function Step1({ formData, setFormData }) {
         }
       />
       <input
+        required
         type="password"
         placeholder="Επιβεβαίωση Κωδικού"
         value={formData.confirmPassword}

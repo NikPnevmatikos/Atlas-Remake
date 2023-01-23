@@ -88,7 +88,7 @@ function CreateApplicationScreen() {
         <div>
             <div 
             style={{ 
-                    width: 700, padding: 30 }}
+                    width: 700, padding: 15, height: '7vh'  }}
             >
                 <Breadcrumb>
                 <LinkContainer to = '/'>
@@ -176,7 +176,7 @@ function CreateApplicationScreen() {
                                 >    
                                     <option value="Φυσική παρουσία">Φυσική παρουσία</option>
                                     <option value="Εξ αποστάσεως">Εξ αποστάσεως</option>
-                                    <option value="Υδριδικό">Υδριδικό</option>
+                                    <option value="Υβριδικό">Υβριδικό</option>
                                 </Form.Select> 
                             </Form.Group> 
 
@@ -243,15 +243,15 @@ function CreateApplicationScreen() {
                                 </Form.Control>           
                             </Form.Group> 
 
-                            <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
-                                Υποβολή Αγγελίας
-                            </Button>
-
-                                
-                            <Button onClick={buttonHandler} className="btn btn-secondary">
-                                Προσωρινή Αποθήκευση
-                            </Button>
-
+                            <div className='py-4'>
+                                <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
+                                    Υποβολή Αγγελίας
+                                </Button>
+                                    
+                                <Button onClick={buttonHandler} className="btn btn-secondary">
+                                    Προσωρινή Αποθήκευση
+                                </Button>
+                            </div>
                         </Form>
                     </Col>
                 </Row>

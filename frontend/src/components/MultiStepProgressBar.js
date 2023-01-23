@@ -24,8 +24,8 @@ function MultiStepProgressBar({ type = 0 }) {
     email: "",
     password: "",
     confirmPassword: "",
-    providerType: "",
-    category: "",
+    providerType: "Ιδιωτικός Φορέας",
+    category: "ΑΘλητισμός",
     name: "",
     afm: "",
     workers: "",
@@ -36,7 +36,7 @@ function MultiStepProgressBar({ type = 0 }) {
     last_name: "",
     phone: "",
     identification: "",
-    university: "",
+    university: "Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης",
 
   });
 
@@ -80,11 +80,17 @@ function MultiStepProgressBar({ type = 0 }) {
 
   const submitHandler = (e) =>{
     e.preventDefault()
-    if(type === 0){
-        dispatch(register(formData,'provider'))
+    console.log(formData)
+    if(formData.username === "" || formData.password === "" || formData.email === "" || formData.fist_name === ""){
+        alert("Συμπληρώστε όλα τα πεδία")
     }
     else{
-        dispatch(register(formData, 'student'))
+        if(type === 0){
+            dispatch(register(formData,'provider'))
+        }
+        else{
+            dispatch(register(formData, 'student'))
+        }
     }
   }
 
@@ -136,9 +142,7 @@ function MultiStepProgressBar({ type = 0 }) {
                         length = FormStudent.length;
                     }
                     if (page === length - 1) {
-                        alert("FORM SUBMITTED");
                         submitHandler(e);
-                        console.log(formData);
                     } else {
                         if(formData.password !== formData.confirmPassword){
                           alert("Οι κωδικοί δεν είναι ίδιοι")

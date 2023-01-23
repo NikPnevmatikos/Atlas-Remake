@@ -18,7 +18,7 @@ main {
 
 body {
   min-height: 80vh;
-  height: 100%;
+  height: fit-content;
   width: 100%;
   background-color: rgb(246, 247, 247);
   background-size: cover;
@@ -32,9 +32,8 @@ video {
   left: 0;
   object-fit: cover;
 }
-/* 
-.footer {
-  top: 0;
+/* body > #root > main > #container > div {
+  height: 100%;
 } */
 
 .content {
@@ -69,7 +68,15 @@ nav {
 
 .carousel {
   top: 1;
-  height: 80%;
+  height: 80vh;
+}
+
+.carousel-items {
+  position: block;
+  height: 60vh;
+  justify-content: center;
+  border: 5px;
+  border-color: aqua;
 }
 
 .carousel-indicators {

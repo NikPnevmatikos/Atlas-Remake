@@ -4,6 +4,7 @@ function Step5({ formData, setFormData }) {
   return (
     <div className="other-info-container">
       <input
+        required
         type="text"
         placeholder="Όνομα"
         value={formData.first_name}
@@ -12,6 +13,7 @@ function Step5({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="Επώνυμο"
         value={formData.last_name}

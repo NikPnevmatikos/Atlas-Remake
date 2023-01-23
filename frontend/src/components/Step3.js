@@ -31,6 +31,7 @@ function Step3({ formData, setFormData }) {
     </select>
 
       <input
+        required
         type="text"
         placeholder="Επωνυμία"
         value={formData.name}
@@ -39,6 +40,7 @@ function Step3({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="ΑΦΜ"
         value={formData.afm}
@@ -47,6 +49,7 @@ function Step3({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="number"
         placeholder="Αριθμός απασχολούμενων"
         value={formData.workers}
@@ -55,6 +58,7 @@ function Step3({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="Χώρα"
         value={formData.country}
@@ -63,6 +67,7 @@ function Step3({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="Οδός-Αριθμός"
         value={formData.street}
@@ -71,6 +76,7 @@ function Step3({ formData, setFormData }) {
         }}
         />
       <input
+        required
         type="text"
         placeholder="TK"
         value={formData.postal}

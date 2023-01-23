@@ -38,27 +38,23 @@ export const providerApplications = () => async(dispatch, getState) =>{
     }
 }
 
-export const studentApplications = () => async(dispatch, getState) =>{
+export const studentApplications = (keyword='') => async(dispatch) =>{
     
     try {
         dispatch({
             type: 'STUDENT_APPLICATIONS_REQUEST'
         })
-        
-
-        const {
-            userLoginReducer: { userInfo }, 
-        } = getState()
 
         const config = {
-            headers: {
-                'Content-type': 'application/json',
-                Authorization : `Bearer ${userInfo.token}`
-            }
+                headers: {
+                    'Content-type': 'application/json',
+            
+                }
         }
 
+
         const { data } = await axios.get(
-            `/api/internships/`,
+            `/api/internships${keyword}`,
             config
         )
 
@@ -118,7 +114,7 @@ export const applicationViewAction = (id) => async(dispatch, getState) =>{
     
     try {
         dispatch({
-            type: 'APPLICATION_REQUEST'
+            type: 'APPLICATION_VIEW_REQUEST'
         })
         
 
@@ -139,13 +135,13 @@ export const applicationViewAction = (id) => async(dispatch, getState) =>{
         )
 
         dispatch ({
-            type: 'APPLICATION_SUCCESS',
+            type: 'APPLICATION_VIEW_SUCCESS',
             payload: data
         })
     }
     catch(error) {
         dispatch ({
-            type: 'APPLICATION_FAIL',
+            type: 'APPLICATION_VIEW_FAIL',
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
               
         })
@@ -231,6 +227,45 @@ export const createInternshipAction = (form) => async(dispatch, getState) =>{
         })
     }
 }
+
+export const createApplyAction = (form) => async(dispatch, getState) =>{
+    
+    try {
+        dispatch({
+            type: 'CREATE_APPLY_REQUEST'
+        })
+        
+
+        const {
+            userLoginReducer: { userInfo }, 
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'multipart/form-data',
+                Authorization : `Bearer ${userInfo.token}`
+            }
+        }
+        const { data } = await axios.post(
+            `/api/apply/${form.get('_id')}/`,
+            form,
+            config
+        )
+
+        dispatch ({
+            type: 'CREATE_APPLY_SUCCESS',
+            payload: data
+        })
+    }
+    catch(error) {
+        dispatch ({
+            type: 'CREATE_APPLY_FAIL',
+            payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
+              
+        })
+    }
+}
+
 
 export const internshipViewAction = (id) => async(dispatch, getState) =>{
     
@@ -340,6 +375,44 @@ export const deleteInternshipAction = (id) => async(dispatch, getState) =>{
     catch(error) {
         dispatch ({
             type: 'INTERNSHIP_DELETE_FAIL',
+            payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
+              
+        })
+    }
+}
+
+export const deleteApplyAction = (id) => async(dispatch, getState) =>{
+    
+    try {
+        dispatch({
+            type: 'APPLY_DELETE_REQUEST'
+        })
+        
+
+        const {
+            userLoginReducer: { userInfo }, 
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization : `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.delete(
+            `/api/apply/delete/${id}/`,
+            config
+        )
+
+        dispatch ({
+            type: 'APPLY_DELETE_SUCCESS',
+            payload: data
+        })
+    }
+    catch(error) {
+        dispatch ({
+            type: 'APPLY_DELETE_FAIL',
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
               
         })

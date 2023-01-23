@@ -3,7 +3,7 @@ import {Link, useParams, useNavigate, useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { LinkContainer } from 'react-router-bootstrap'
-import { Button } from 'react-bootstrap'
+import { Button, Form, Modal } from 'react-bootstrap'
 import Badge from 'react-bootstrap/Badge';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -31,6 +31,10 @@ function Provider() {
 
   const [message, setMessage] = useState('')
   const [rejectionText, setRej] = useState('')
+  const [show, setShow] = useState(false);
+ 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
  
 
   const provider = useSelector(state => state.userLoginReducer)
@@ -72,26 +76,32 @@ function Provider() {
     })
   }
 
-  const acceptHandler = (id) => {
-    alert("Είστε σίγουροι για αυτήν την ενέργεια;")
-    const form = new FormData()
-    form.append('_id', id)
-    form.append('state', 'accepted')
-    dispatch(applicationUpdateAction(form))
+  const acceptHandler = (e,id) => {
+    e.preventDefault()
+    if(window.confirm("Είστε σίγουροι για αυτήν την ενέργεια;")){
+      const form = new FormData()
+      form.append('_id', id)
+      form.append('state', 'accepted')
+      dispatch(applicationUpdateAction(form))
+    }
   }
 
-  const declineHandler = (id,rejectionText) => {
+
+  const declineHandler = (e,id) => {
+    e.preventDefault()
+    handleClose();
     const form = new FormData()
     form.append('_id', id)
     form.append('state', 'declined')
     form.append('rejectionText',rejectionText)
+    console.log(id,rejectionText)
     dispatch(applicationUpdateAction(form))
   }
 
   return (
     <div>
       <div style={{ display: 'block', 
-                  width: 700, padding: 30 }}
+                  width: 700, padding: 15, height: '7vh'  }}
       >
         <Breadcrumb>
           <LinkContainer to = '/'>
@@ -141,8 +151,11 @@ function Provider() {
               <strong>{error}</strong>
             </div>
             :
-            <Accordion className='accordion'>
-              {Array.isArray(applications) ?
+            <Accordion className='accordion' style={{
+                          maxHeight: 'calc(90vh - 240px)',
+                          overflowY: 'auto',
+                          }}>
+              {Array.isArray(applications) && applications.length ?
                   (applications.map(application => (  
                     <Accordion.Item
                       key = {application._id}
@@ -151,7 +164,7 @@ function Provider() {
                       <Accordion.Header className='accordion-header'>
                         <div className="ms-2 me-auto">
                           <div className="fw-bold"><h4>{application.first_name} {application.last_name}</h4></div>
-                              Τμήμα:<strong>{application.university}</strong> 
+                              Τμήμα: <strong>{application.university}</strong> 
                               {application.state === 'accepted' && <div><br/>Εγκεκριμένη</div>}
                               {application.state === 'declined' && <div><br/>Απορριφθήσα</div>}
                         </div>
@@ -172,26 +185,47 @@ function Provider() {
                         <p>{application.text}</p>
                         <br/>
                         <br/>
-                        <OverlayTrigger
-                          trigger="click"
-                          key='right'
-                          placement='right'
-                          overlay={
-                            <Popover id={`popover-positioned-right`}>
-                              <Popover.Header as="h3">Αιτιολογία Απόρριψης:</Popover.Header>
-                              <Popover.Body>
-                                  lalal
-                              </Popover.Body>
-                            </Popover>
-                          }
-                        >
-                          <Button disabled={application.state!=="waiting"} variant='danger'>Απόρριψη</Button>
-                        </OverlayTrigger>
-                        <Button onClick={() => acceptHandler(application._id,application.state)} disabled={application.state!=="waiting"} style={{float: 'right'}}>Αποδοχή</Button>
+                        <Button variant='danger' onClick={handleShow} disabled={application.state!=="waiting"}>
+                          Απόρριψη
+                        </Button>
+                        <Modal show={show} onHide={handleClose} enforceFocus={false}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Μήνυμα</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            <Form>
+                              <Form.Group
+                                className="mb-3"
+                              >
+                                <Form.Label>Μήνυμα</Form.Label>
+                                <Form.Control 
+                                      as="textarea" 
+                                      rows={3} 
+                                      type='text'   
+                                      placeholder='Μήνυμα' 
+                                      size="sm"
+                                      value= {rejectionText}
+                                      onChange = {(e) => setRej(e.target.value)}      
+                                />
+                              </Form.Group>
+                            </Form>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button onClick={handleClose} variant="secondary">
+                              Κλείσιμο
+                            </Button>
+                            <Button onClick={(e) => declineHandler(e,application._id)} variant="primary">
+                              Υποβολή
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
+                        <Button onClick={(e) => acceptHandler(e,application._id)} disabled={application.state!=="waiting"} style={{float: 'right'}}>Αποδοχή</Button>
                       </Accordion.Body>
                     </Accordion.Item>
                 ))):
-                null
+                  <div className='py-3' style={{float: 'center'}}>
+                    <p class="lead">Δεν υπάρχουν αιτήσεις σε αυτή την αγγελία ακόμα.</p>
+                  </div>
               }
             </Accordion>
           }

@@ -4,6 +4,7 @@ function Step2({ formData, setFormData }) {
   return (
     <div className="personal-info-container">
       <input
+        required
         type="text"
         placeholder="Όνομα"
         value={formData.first_name}
@@ -12,6 +13,7 @@ function Step2({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="Επώνυμο"
         value={formData.last_name}
@@ -20,6 +22,7 @@ function Step2({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="Τηλέφωνο"
         value={formData.phone}
@@ -28,6 +31,7 @@ function Step2({ formData, setFormData }) {
         }}
       />
       <input
+        required
         type="text"
         placeholder="Αριθμός Ταυτότητας"
         value={formData.identification}

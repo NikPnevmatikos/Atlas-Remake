@@ -104,7 +104,7 @@ function EditInternshipScreen() {
         <div>
             <div 
             style={{ 
-                    width: 700, padding: 30 }}
+                    width: 700, padding: 15, height: '7vh' }}
             >
                 <Breadcrumb>
                 <LinkContainer to = '/'>
@@ -185,7 +185,7 @@ function EditInternshipScreen() {
                             </Form.Group> 
 
                             <Form.Group controlId='type' className='py-3'>
-                                <Form.Label>κουμπι για ριμοουτ ή οχι</Form.Label>
+                                <Form.Label>Τύπος</Form.Label>
                                 <Form.Select 
                                     id="type"
                                     onChange = {(e) => setType(e.target.value)} 
@@ -259,14 +259,16 @@ function EditInternshipScreen() {
                                 </Form.Control>           
                             </Form.Group> 
 
-                            <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
-                                Υποβολή Αγγελίας
-                            </Button>
+                            <div className='py-4'>
+                                <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
+                                    Υποβολή Αγγελίας
+                                </Button>
 
-                                
-                            <Button onClick={buttonHandler} className="btn btn-secondary">
-                                Προσωρινή Αποθήκευση
-                            </Button>
+                                    
+                                <Button onClick={buttonHandler} className="btn btn-secondary">
+                                    Προσωρινή Αποθήκευση
+                                </Button>
+                            </div>
 
                         </Form>
                     </Col>

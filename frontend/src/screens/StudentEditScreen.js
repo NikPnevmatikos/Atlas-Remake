@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { LinkContainer } from 'react-router-bootstrap'
 import {Link ,useNavigate } from 'react-router-dom'
 import { Form, Container, Button, Col, Row } from 'react-bootstrap'
 import Spinner from 'react-bootstrap/Spinner';
@@ -74,124 +76,153 @@ function ProviderEditScreen() {
     }
 
     return (
-        <Container>
-            <Row className = "justify-content-md-center">
-                <Col xs={12} md={6}>
-                    <h1>My Profile</h1>
-
-                    {errorMessage && 
-                        <div className="alert alert-dismissible alert-danger">
-                        <strong>{errorMessage}</strong>
+        <div>
+            <div 
+            style={{ display: 'block', 
+                    width: 700, padding: 15, height: '7vh' }}
+            >
+                <Breadcrumb>
+                <LinkContainer to = '/'>
+                    <Breadcrumb.Item>
+                    Αρχική
+                    </Breadcrumb.Item>
+                </LinkContainer>
+                <LinkContainer to = '/internship_provider'>
+                    <Breadcrumb.Item>
+                    Φοιτητές και Φοιτήτριες
+                    </Breadcrumb.Item>
+                </LinkContainer>
+                <LinkContainer to = '/internship_provider/profile'>
+                    <Breadcrumb.Item>
+                    Το Προφίλ Μου
+                    </Breadcrumb.Item>
+                </LinkContainer>
+                <Breadcrumb.Item active>
+                    Επεξεργασία Προφίλ
+                </Breadcrumb.Item>
+                </Breadcrumb>
+                
+            </div>
+            <Container>
+                <Row className = "justify-content-md-center">
+                    <Col xs={12} md={6}>
+                        <div className='py-1'>
+                            <h3 style={{textAlign: "center"}} >Επεξεργασία Προφίλ</h3>
                         </div>
-                    }
+                        {errorMessage && 
+                            <div className="alert alert-dismissible alert-danger">
+                            <strong>{errorMessage}</strong>
+                            </div>
+                        }
 
-                    {error && 
-                        <div className="alert alert-dismissible alert-danger">
-                        <strong>{error}</strong>
-                        </div>
-                    }
-                    {loading &&
-                        <Spinner 
-                        animation="border" role="status" style={{ margin: 'auto',
-                                                                    display: 'block'
-                                                                }}>
-                            <span className="visually-hidden">Loading</span>
-                        </Spinner>
-                    }
-                    
-                    <Form onSubmit={submitHandler}>
-                        <h5 className='py-3'>Στοιχεία Λογαριασμού:</h5>
-                        <Form.Group controlId='username' className='py-1'>
-                            <Form.Label>Όνομα Χρήστη:</Form.Label>
+                        {error && 
+                            <div className="alert alert-dismissible alert-danger">
+                            <strong>{error}</strong>
+                            </div>
+                        }
+                        {loading &&
+                            <Spinner 
+                            animation="border" role="status" style={{ margin: 'auto',
+                                                                        display: 'block'
+                                                                    }}>
+                                <span className="visually-hidden">Loading</span>
+                            </Spinner>
+                        }
+                        
+                        <Form onSubmit={submitHandler}>
+                            <Form.Group controlId='username' className='py-1'>
+                                <Form.Label>Όνομα Χρήστη:</Form.Label>
+                                <Form.Control 
+                                    type='username' 
+                                    placeholder='Disabled input' 
+                                    value={username}
+                                    onChange = {(e) => setUsername(e.target.value)}                           
+                                >        
+                                </Form.Control>
+                            </Form.Group> 
+
+                            <Form.Group controlId='email' className='py-1'>
+                                <Form.Label>Email:</Form.Label>
+                                <Form.Control 
+                                    type='Email'   
+                                    placeholder='Disabled input' 
+                                    value={email}
+                                    onChange = {(e) => setEmail(e.target.value)}  
+                                >        
+                                </Form.Control>           
+                            </Form.Group> 
+
+                            <Form.Group controlId='password' className='py-1'>
+                            <Form.Label>Νέος Κωδικός (Optional)</Form.Label>
                             <Form.Control 
-                                type='username' 
-                                placeholder='Disabled input' 
-                                value={username}
-                                onChange = {(e) => setUsername(e.target.value)}                           
-                            >        
+                                type='password' 
+                                placeholder='Enter Password' 
+                                value={password}
+                                onChange = {(e) => setPassword(e.target.value)}                            
+                            >
                             </Form.Control>
                         </Form.Group> 
 
-                        <Form.Group controlId='email' className='py-1'>
-                            <Form.Label>Email:</Form.Label>
+                        <Form.Group controlId='passwordConfirm' className='py-3'>
+                            <Form.Label>Επιβεβαίωση Κωδικού</Form.Label>
                             <Form.Control 
-                                type='Email'   
-                                placeholder='Disabled input' 
-                                value={email}
-                                onChange = {(e) => setEmail(e.target.value)}  
-                            >        
-                            </Form.Control>           
-                        </Form.Group> 
-
-                        <Form.Group controlId='password' className='py-1'>
-                        <Form.Label>Νέος Κωδικός (Optional)</Form.Label>
-                        <Form.Control 
-                            type='password' 
-                            placeholder='Enter Password' 
-                            value={password}
-                            onChange = {(e) => setPassword(e.target.value)}                            
-                        >
-                        </Form.Control>
-                    </Form.Group> 
-
-                    <Form.Group controlId='passwordConfirm' className='py-3'>
-                        <Form.Label>Επιβεβαίωση Κωδικού</Form.Label>
-                        <Form.Control 
-                            type='password' 
-                            placeholder='Confirm Password' 
-                            value={confirmPassword}
-                            onChange = {(e) => setConfirmPassword(e.target.value)}                            
-                        >
-                        </Form.Control>
-                    </Form.Group> 
-                        <Form.Group controlId='first name' className='py-1'>
-                            <Form.Label>First Name:</Form.Label>
-                            <Form.Control 
-                                type='name'   
-                                placeholder='Disabled input' 
-                                value={first_name}
-                                onChange = {(e) => setFirstName(e.target.value)}                         
-                            >        
+                                type='password' 
+                                placeholder='Confirm Password' 
+                                value={confirmPassword}
+                                onChange = {(e) => setConfirmPassword(e.target.value)}                            
+                            >
                             </Form.Control>
                         </Form.Group> 
+                            <Form.Group controlId='first name' className='py-1'>
+                                <Form.Label>First Name:</Form.Label>
+                                <Form.Control 
+                                    type='name'   
+                                    placeholder='Disabled input' 
+                                    value={first_name}
+                                    onChange = {(e) => setFirstName(e.target.value)}                         
+                                >        
+                                </Form.Control>
+                            </Form.Group> 
 
-                        <Form.Group controlId='last name' className='py-1'>
-                            <Form.Label>Επώνυμο:</Form.Label>
-                            <Form.Control 
-                                type='last name'   
-                                placeholder='Disabled input' 
-                                value={last_name}
-                                onChange = {(e) => setLastName(e.target.value)}                         
-                            >        
-                            </Form.Control>
-                        </Form.Group> 
+                            <Form.Group controlId='last name' className='py-1'>
+                                <Form.Label>Επώνυμο:</Form.Label>
+                                <Form.Control 
+                                    type='last name'   
+                                    placeholder='Disabled input' 
+                                    value={last_name}
+                                    onChange = {(e) => setLastName(e.target.value)}                         
+                                >        
+                                </Form.Control>
+                            </Form.Group> 
 
-                        <Form.Group controlId='university' className='py-1'>
-                            <Form.Label>Σχολή:</Form.Label>
-                            <Form.Control 
-                                type='last name'   
-                                placeholder='Disabled input' 
-                                value={university}
-                                disabled
-                                readOnly                           
-                            >        
-                            </Form.Control>
-                        </Form.Group> 
+                            <Form.Group controlId='university' className='py-1'>
+                                <Form.Label>Σχολή:</Form.Label>
+                                <Form.Control 
+                                    type='last name'   
+                                    placeholder='Disabled input' 
+                                    value={university}
+                                    disabled
+                                    readOnly                           
+                                >        
+                                </Form.Control>
+                            </Form.Group> 
 
-                        <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
-                            Save Changes
-                        </Button>
+                            <div className='py-4'>
+                                <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
+                                    Αποθήκευση Αλλαγών
+                                </Button>
 
-                        <Link to='/internship_provider/profile'>
-                            <Button type="button" className="btn btn-secondary">
-                                Discard Changes
-                            </Button>
-                        </Link>
-
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+                                <Link to='/internship_provider/profile'>
+                                    <Button type="button" className="btn btn-secondary">
+                                        Απόρριψη Αλλαγών
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     )
 }
 

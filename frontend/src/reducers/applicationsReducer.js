@@ -63,13 +63,13 @@ export const studentApplicationsViewReducer = (state = {applications:[]}, action
 
 export const applicationsViewReducer= (state = {applications:[]}, action) => {
     switch(action.type){
-        case 'APPLICATION_REQUEST' :
+        case 'APPLICATION_VIEW_REQUEST' :
             return{loading: true, applications:[] } 
         
-        case 'APPLICATION_SUCCESS' :
+        case 'APPLICATION_VIEW_SUCCESS' :
             return {loading: false , applications: action.payload }
         
-        case 'APPLICATION_FAIL' :
+        case 'APPLICATION_VIEW_FAIL' :
             return {loading: false, error: action.payload}
 
             
@@ -114,6 +114,28 @@ export const createInternshipReducer = (state = {}, action) => {
             return state
         }       
 }
+
+export const createApplyReducer = (state = {}, action) => {
+    switch(action.type){
+        case 'CREATE_APPLY_REQUEST' :
+            return{loading: true} 
+        
+        case 'CREATE_APPLY_SUCCESS' :
+            return {loading: false, 
+                    success: true,
+                    apply: action.payload }
+        
+        case 'CREATE_APPLY_FAIL' :
+            return {loading: false, error: action.payload}
+    
+        case 'CREATE_APPLY_RESET' :
+            return {}
+            
+        default:
+            return state
+        }       
+}
+
 
 export const internshipViewReducer= (state = {internship:{}}, action) => {
     switch(action.type){
@@ -162,6 +184,23 @@ export const deleteInternshipReducer = (state = {}, action) => {
             return {loading: false , success: true}
         
         case 'INTERNSHIP_DELETE_FAIL' :
+            return {loading: false, error: action.payload}
+            
+        default:
+            return state
+        }       
+}
+
+
+export const deleteApplyReducer = (state = {}, action) => {
+    switch(action.type){
+        case 'APPLY_DELETE_REQUEST' :
+            return{loading: true}
+        
+        case 'APPLY_DELETE_SUCCESS' :
+            return {loading: false , success: true}
+        
+        case 'APPLY_DELETE_FAIL' :
             return {loading: false, error: action.payload}
             
         default:
