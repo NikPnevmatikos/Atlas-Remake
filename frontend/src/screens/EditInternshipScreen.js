@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { LinkContainer } from 'react-router-bootstrap'
-import {Link ,useNavigate, useParams } from 'react-router-dom'
+import {useNavigate, useParams } from 'react-router-dom'
 import { Form, Container, Button, Col, Row } from 'react-bootstrap'
 import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch, useSelector } from 'react-redux'
@@ -65,7 +65,7 @@ function EditInternshipScreen() {
             }
         }
         
-    }, [userInfo, navigate, dispatch,internship , success])
+    }, [userInfo, navigate, dispatch,internship , success, match])
 
     const submitHandler = (e) =>{
         e.preventDefault()

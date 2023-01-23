@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useNavigate, useLocation} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { LinkContainer } from 'react-router-bootstrap'
@@ -10,12 +10,11 @@ import Spinner from 'react-bootstrap/Spinner';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { studentApplicationsView, deleteApplyAction, applicationUpdateAction } from '../actions/applicationsActions'
-import { BsPlusCircle, BsTelephoneFill, BsTrash } from "react-icons/bs";
+import { BsTelephoneFill, BsTrash } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { HiLocationMarker } from "react-icons/hi";
 
 function Applications() {
-  const location = useLocation()
   const navigate = useNavigate()
 
   const [flag, setFlag] = useState(false)
@@ -40,7 +39,7 @@ function Applications() {
   const {userInfo} = student
 
   const Update = useSelector(state => state.applicationsUpdateReducer)
-  const { loading:uploading , error: upError, success: upSuccess } = Update
+  const { success: upSuccess } = Update
 
   const deleteApplication = useSelector(state => state.deleteApplyReducer)
   const {error: delete_error, loading: delete_load, success } = deleteApplication

@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useNavigate, useLocation} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Tab from 'react-bootstrap/Tab';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Button, Row, Col, Container, Modal, Form } from 'react-bootstrap'
-import Badge from 'react-bootstrap/Badge';import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Spinner from 'react-bootstrap/Spinner';
 import { studentApplications, createApplyAction } from '../actions/applicationsActions'
-import { BsPlusCircle, BsTelephoneFill, BsTrash, BsBuilding, BsFillCalendarWeekFill } from "react-icons/bs";
+import { BsTelephoneFill, BsBuilding, BsFillCalendarWeekFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaBusinessTime, FaMoneyBillWave } from "react-icons/fa";
@@ -32,7 +31,7 @@ function Student() {
   const [type, setType] = useState('')
   const [loc, setLoc] = useState('')
   const [visible, setVis] = useState('')
-  // const [message, setMessage] = useState('')
+
  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -49,8 +48,6 @@ function Student() {
   const {userInfo} = student
 
 
-//   const deleteApplication = useSelector(state => state.deleteApplicationReducer)
-//   const {error: delete_error, loading: delete_load, success } = deleteApplication
 
   useEffect(() => {
     dispatch(studentApplications(`?${keyword}`))
@@ -94,7 +91,6 @@ function Student() {
     setFile(file)
   }
 
-  let obj = {}
   const handleClick = (e,application) => {
     e.preventDefault();
     if(keyword){

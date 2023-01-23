@@ -1,13 +1,7 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Carousel from 'react-bootstrap/Carousel';
 import { LinkContainer } from 'react-router-bootstrap'
-// import ControlledCarousel from "../components/ControlledCarousel.js"
-// import headerImg from "../assets/img/header-img.svg";
 import { ArrowRight } from 'react-bootstrap-icons';
-// import 'animate.css';
-// import TrackVisibility from 'react-on-screen';
-// import {student} from "./student.png";
 
 import videobg from '../videobg_Trim.mp4'
 

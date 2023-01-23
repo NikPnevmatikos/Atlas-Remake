@@ -42,7 +42,6 @@ function MultiStepProgressBar({ type = 0 }) {
 
   const FormTitles = ["Στοιχεία Λογαριασμού", "Στοιχεία Νόμιμου Εκπρόσωπου", "Στοιχεία Φορέα Υποδοχής"];
   const FormStudent = ["Στοιχεία Λογαριασμού", "Σχολή"];
-  const Progress = [33.3, 66.6, 100]
 
   const dispatch = useDispatch()
   const userRegister = useSelector(state => state.userRegisterReducer)
@@ -112,13 +111,13 @@ function MultiStepProgressBar({ type = 0 }) {
         }
         <Row className="py-2">
             <Col>
-                <ProgressBar animated now={type == 0 ? page === 0 ? 33.3 : page == 1 ? 66.6 : 100 : page === 0 ? 50 : 100}/>      
+                <ProgressBar animated now={type === 0 ? page === 0 ? 33.3 : page === 1 ? 66.6 : 100 : page === 0 ? 50 : 100}/>      
             </Col>
         </Row>
         <div className="form py-2">
             <div className="form-container">
                 <div className="header py-3">
-                    {type == 0 ? 
+                    {type === 0 ? 
                         <h5>{FormTitles[page]}</h5>
                     :
                         <h5>{FormStudent[page]}</h5>
@@ -128,7 +127,7 @@ function MultiStepProgressBar({ type = 0 }) {
                 <div className="body">{PageDisplay()}</div>
                 <div className="footer">
                 <button type="button" class="btn btn-primary"
-                    disabled={page == 0}
+                    disabled={page === 0}
                     onClick={() => {
                     setPage((currPage) => currPage - 1);
                     }}

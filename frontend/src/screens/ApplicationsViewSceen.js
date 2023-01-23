@@ -1,23 +1,17 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useParams, useNavigate, useLocation} from 'react-router-dom'
+import {Link, useParams, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Button, Form, Modal } from 'react-bootstrap'
-import Badge from 'react-bootstrap/Badge';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
 import Spinner from 'react-bootstrap/Spinner';
-// import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
 import { applicationViewAction, applicationUpdateAction } from '../actions/applicationsActions'
-import { BsPlusCircle } from "react-icons/bs";
 import useFitText from "use-fit-text";
 
 
 function Provider() {
   
-  const location = useLocation()
   const navigate = useNavigate()
   const match = useParams()
 
@@ -58,7 +52,7 @@ function Provider() {
     else{
       navigate('/sign_in')
     }
-  }, [dispatch, navigate, userInfo, success])
+  }, [dispatch, navigate, userInfo, success,match])
 
 
   const onLinkClick = (filename) => {
