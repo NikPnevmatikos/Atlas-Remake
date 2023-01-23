@@ -62,6 +62,9 @@ function Student() {
     if(userInfo != null && userInfo.is_student === false){
       navigate('/internship_provider')
     }
+    else{
+      setVis('false')
+    }
   }, [dispatch, success, navigate,userInfo, keyword])
 
   const submitHandler = (e,id,state) => {
