@@ -344,15 +344,17 @@ function ProviderEditScreen() {
                                 </Form.Control>
                             </Form.Group> 
 
-                            <Button type='submit' className="btn btn-dark btn-lg" style={{float: 'right'}}>
-                                Save Changes
-                            </Button>
-
-                            <Link to='/internship_provider/profile'>
-                                <Button type="button" className="btn btn-dark btn-lg">
-                                    Discard Changes
+                            <div className='py-4'>
+                                <Button type='submit' className="btn btn-primary" style={{float: 'right'}}>
+                                    Αποθήκευση Αλλαγών
                                 </Button>
-                            </Link>
+
+                                <Link to='/internship_provider/profile'>
+                                    <Button type="button" className="btn btn-secondary">
+                                        Απόρριψη Αλλαγών
+                                    </Button>
+                                </Link>
+                            </div>
 
                         </Form>
                     </Col>

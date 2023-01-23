@@ -57,15 +57,17 @@ function Step3({ formData, setFormData }) {
           setFormData({ ...formData, workers: e.target.value });
         }}
       />
-      <input
-        required
-        type="text"
+
+      <select 
         placeholder="Χώρα"
-        value={formData.country}
+        value={formData.country} 
         onChange={(e) => {
           setFormData({ ...formData, country: e.target.value });
         }}
-      />
+      >
+        <option value="Ελλάδα">Ελλάδα</option>
+        <option value="Κύπρος">Κύπρος</option>
+      </select>
       <input
         required
         type="text"

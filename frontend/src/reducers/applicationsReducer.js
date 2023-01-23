@@ -13,6 +13,9 @@ export const providerApplicationsReducer = (state = {internships:[]}, action) =>
         
         case 'USER_APPLICATIONS_FAIL' :
             return {loading: false, error: action.payload}
+
+        case 'USER_APPLICATIONS_RESET':
+            return {}
             
         default:
             return state

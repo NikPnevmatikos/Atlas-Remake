@@ -29,7 +29,7 @@ function MultiStepProgressBar({ type = 0 }) {
     name: "",
     afm: "",
     workers: "",
-    country: "",
+    country: "Ελλάδα",
     street: "",
     postal: "",
     first_name: "",
@@ -40,7 +40,7 @@ function MultiStepProgressBar({ type = 0 }) {
 
   });
 
-  const FormTitles = ["Στοιχεία Λογαριασμού", "Στοιχεία Φορέα Υποδοχής", "Στοιχεία Νόμιμου Εκπρόσωπου"];
+  const FormTitles = ["Στοιχεία Λογαριασμού", "Στοιχεία Νόμιμου Εκπρόσωπου", "Στοιχεία Φορέα Υποδοχής"];
   const FormStudent = ["Στοιχεία Λογαριασμού", "Σχολή"];
   const Progress = [33.3, 66.6, 100]
 

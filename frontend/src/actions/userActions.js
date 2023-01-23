@@ -47,9 +47,10 @@ export const logout = () => (dispatch) => {
         type: 'USER_PROFILE_RESET' 
     })
 
-    // dispatch({ 
-    //     type: 'USERS_RESET' 
-    // })
+    dispatch({
+        type: 'USER_APPLICATIONS_RESET'
+    })
+
 
 }
 

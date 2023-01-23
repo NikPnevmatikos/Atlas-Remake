@@ -174,7 +174,7 @@ function ProviderEditScreen() {
                             </Form.Control>
                         </Form.Group> 
                             <Form.Group controlId='first name' className='py-1'>
-                                <Form.Label>First Name:</Form.Label>
+                                <Form.Label>Όνομα:</Form.Label>
                                 <Form.Control 
                                     type='name'   
                                     placeholder='Disabled input' 
@@ -212,7 +212,7 @@ function ProviderEditScreen() {
                                     Αποθήκευση Αλλαγών
                                 </Button>
 
-                                <Link to='/internship_provider/profile'>
+                                <Link to='/students/profile'>
                                     <Button type="button" className="btn btn-secondary">
                                         Απόρριψη Αλλαγών
                                     </Button>

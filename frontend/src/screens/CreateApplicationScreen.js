@@ -149,7 +149,7 @@ function CreateApplicationScreen() {
                                 >    
                                     <option value="Καμία Προτίμηση">Καμία Προτίμηση</option>
                                     <option value="Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης">Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης</option>
-                                    <option value="Εθνικό και Καποδηστριακό Πανεπιστήμιο Αθηνών">Εθνικό και Καποδηστριακό Πανεπιστήμιο Αθηνών</option>
+                                    <option value="Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών">Εθνικό και Καποδηστριακό Πανεπιστήμιο Αθηνών</option>
                                     <option value="Εθνικό Μετσόβιο Πολυτεχνείο">Εθνικό Μετσόβιο Πολυτεχνείο</option>
                                     <option value="Οικονομικό Πανεπιστήμιο Αθηνών">Οικονομικό Πανεπιστήμιο Αθηνών</option>
                                     <option value="Πανεπιστήμιο Θεσσαλίας">Πανεπιστήμιο Θεσσαλίας</option>
@@ -169,7 +169,7 @@ function CreateApplicationScreen() {
                             </Form.Group> 
 
                             <Form.Group controlId='type' className='py-3'>
-                                <Form.Label>κουμπι για ριμοουτ ή οχι</Form.Label>
+                                <Form.Label>Τύπος</Form.Label>
                                 <Form.Select 
                                     id="type"
                                     onChange = {(e) => setType(e.target.value)} 
