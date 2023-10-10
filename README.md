@@ -6,7 +6,8 @@ Atlas website redesigned using django and react js
 through the website and internship providers can revise their application and 
 accept or decline them
 * A more user friendly interface 
-* A wireframe design took place before the implementation of the website
+* A wireframe [wireframe](./Wireframes.pdf) design took place before the implementation of the website
+* Detailed documentation [Atlas-ReadMe.pdf](./Atlas-ReadMe.pdf)
 
 
 Install Django Packages: 
